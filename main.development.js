@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, Menu, shell, ipcMain, dialog } from 'electron';
 
 let menu;
 let template;
@@ -48,6 +48,11 @@ app.on('ready', async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  ipcMain.on('open-dir-dialog', function(event, arg) {
+    var dirPath = dialog.showOpenDialog(mainWindow, { properties: [ 'openDirectory', 'multiSelections' ]})
+    event.sender.send('open-dir-dialog-reply', dirPath);
   });
 
   if (process.env.NODE_ENV === 'development') {

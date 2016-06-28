@@ -1,0 +1,39 @@
+$backgroundColor: #f4f4f4;
+$primaryColor: lighten(#33626D, 4);
+$directory-bar-height: 50px;
+$row-height: 50px;
+$black-font-color: #333;
+$gray-font-color: #777;
+
+$button-width: 70px;
+
+@mixin lightenIterator($color, $index, $step) {
+  @if $index*$step < 100 {
+    background-color: lighten($color, $index*$step);
+  } @else {
+    background-color: lighten($color, 100);
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: none;
+}
+
+body {
+  background: $backgroundColor;
+  padding: 40px;
+  font-size: 14px;
+  font-family: Helvetica Neue, Arial;
+  font-weight: 200;
+  font-color: $black-font-color;
+  overflow-y: scroll;
+}
+
+
+.edbLCA {
+  @import 'directory_bar';
+  @import 'additional';
+  @import 'file_list';
+}
