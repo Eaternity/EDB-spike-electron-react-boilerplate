@@ -33,6 +33,10 @@ const installExtensions = async () => {
 app.on('ready', async () => {
   await installExtensions();
 
+  var subpy = require('child_process').spawn('python', ['./hello.py']);
+  //var subpy = require('child_process').spawn('./dist/hello.exe');
+  var rq = require('request-promise');
+
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
