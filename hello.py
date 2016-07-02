@@ -1,17 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-import time
-from flask import Flask
+import sys
+import os
+import subprocess
 
-app = Flask(__name__)
+# path to the script that must run under the virtualenv
+script_file = "/Users/mklarmann/Documents/workspace/edblca/hello2.py" # + str(sys.argv)
+env = "/Users/mklarmann/Documents/workspace/miniconda3/envs/bw2"
 
-@app.route("/")
-def hello():
-    return "Hello World! This is powered by Python backend."
-
-if __name__ == "__main__":
-    print('oh hello')
-    #time.sleep(5)
-    app.run(host='127.0.0.1', port=5000)
+subprocess.call([os.path.join(env, 'bin/python'), script_file])

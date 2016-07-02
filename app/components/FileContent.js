@@ -11,6 +11,42 @@ class FileContent extends PureComponent {
   render() {
     const { path } = this.props;
     var obj = jetpack.read(path, 'json');
+
+// get the python thing doing something useful
+    // var changedir = require('child_process').spawn('cd', ['/Users/mklarmann/Documents/workspace/miniconda3']);
+
+    // var source = require('child_process').spawn('source', ['/Users/mklarmann/Documents/workspace/miniconda3/bin/activate']);
+    //
+    // source.stdout.on('data', (data) => {
+    //   console.log(`stdout: ${data}`);
+    // });
+    //
+    // source.stderr.on('data', (data) => {
+    //   console.log(`stderr: ${data}`);
+    // });
+    //
+    // source.on('close', (code) => {
+    //   console.log(`child process exited with code ${code}`);
+    // });
+
+
+    const spawn = require('child_process').spawn;
+    const ls = spawn('python', ['./hello.py',path]);
+
+    ls.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
+
+    ls.stderr.on('data', (data) => {
+      console.log(`stderr: ${data}`);
+    });
+
+    ls.on('close', (code) => {
+      console.log(`child process exited with code ${code}`);
+    });
+
+// get the python thing doing something useful
+
     console.log(obj);
     // JSON.parse(data) //turn to js object
     return (
